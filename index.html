@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>724.fund - Trusted opportunity network</title>
+    <meta
+      name="description"
+      content="724.fund is an AI-native trusted opportunity network for high-value business and talent referrals."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#trust" data-i18n="nav.trust">Trust</a>
+        <a href="#ai" data-i18n="nav.ai">AI Layer</a>
+        <a href="#apply" data-i18n="nav.apply">Apply</a>
+      </nav>
+
+      <div class="header-actions" aria-label="Language selector">
+        <button class="lang-button active" type="button" data-lang="en">EN</button>
+        <button class="lang-button" type="button" data-lang="zh">中文</button>
+        <button class="lang-button" type="button" data-lang="ja">日本語</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">AI-native trusted opportunity network</p>
+          <h1 data-i18n="hero.title">Trusted introductions for high-value business and talent opportunities.</h1>
+          <p class="lede" data-i18n="hero.lede">
+            724.fund turns access, judgment, and trust into a 24/7 opportunity agent. Curated opportunities, verified connectors, consent-first referrals, and staged rewards.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#apply" data-i18n="hero.connectorCta">Apply as a connector</a>
+            <a class="button button-secondary" href="#apply" data-i18n="hero.publisherCta">Publish an opportunity</a>
+          </div>
+          <div class="principles" aria-label="Principles">
+            <span data-i18n="hero.p1">Invite-only beta</span>
+            <span data-i18n="hero.p2">No cold lead spam</span>
+            <span data-i18n="hero.p3">AI trust scoring</span>
+          </div>
+        </div>
+
+        <aside class="workbench" aria-label="Opportunity agent preview">
+          <div class="workbench-header">
+            <span data-i18n="preview.label">Tom Agent review</span>
+            <strong>92</strong>
+          </div>
+          <div class="opportunity">
+            <p data-i18n="preview.type">Senior talent referral</p>
+            <h2 data-i18n="preview.title">VP Sales, Japan</h2>
+            <dl>
+              <div>
+                <dt data-i18n="preview.target">Target</dt>
+                <dd data-i18n="preview.targetValue">Enterprise GTM leader with Japan network</dd>
+              </div>
+              <div>
+                <dt data-i18n="preview.reward">Reward</dt>
+                <dd>$8k - $30k</dd>
+              </div>
+              <div>
+                <dt data-i18n="preview.risk">Risk check</dt>
+                <dd data-i18n="preview.riskValue">Consent and non-compete required</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="agent-note">
+            <span data-i18n="preview.noteLabel">AI draft</span>
+            <p data-i18n="preview.note">
+              Ask for consent first. Share the opportunity anonymously until the candidate confirms interest.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="operating-system" id="trust">
+        <div class="section-intro">
+          <p class="eyebrow" data-i18n="trust.eyebrow">Trust is the product</p>
+          <h2 data-i18n="trust.title">Built to stay small, precise, and hard to game.</h2>
+        </div>
+
+        <div class="trust-grid">
+          <article>
+            <span>01</span>
+            <h3 data-i18n="trust.card1Title">Curated opportunities</h3>
+            <p data-i18n="trust.card1Text">Every opportunity is reviewed for budget, legitimacy, target clarity, and reward terms before it reaches connectors.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3 data-i18n="trust.card2Title">Consent-first referrals</h3>
+            <p data-i18n="trust.card2Text">Connectors submit people they can credibly reach, with consent and relationship context, not scraped contact lists.</p>
+          </article>
+          <article id="ai">
+            <span>03</span>
+            <h3 data-i18n="trust.card3Title">AI trust layer</h3>
+            <p data-i18n="trust.card3Text">Agents score fit, detect duplicates, flag weak submissions, and prepare clean review packets for opportunity owners.</p>
+          </article>
+        </div>
+
+        <div class="apply-panel" id="apply">
+          <div class="apply-copy">
+            <p class="eyebrow" data-i18n="apply.eyebrow">Private beta</p>
+            <h2 data-i18n="apply.title">Launch with fewer, better matches.</h2>
+            <p data-i18n="apply.text">
+              We are onboarding the first high-quality connectors and opportunity owners manually.
+            </p>
+          </div>
+
+          <div class="apply-card">
+            <div class="tabs" role="tablist" aria-label="Application type">
+              <button class="tab active" type="button" data-tab="connector" data-i18n="apply.connectorTab">Connector</button>
+              <button class="tab" type="button" data-tab="publisher" data-i18n="apply.publisherTab">Opportunity owner</button>
+            </div>
+
+            <form class="apply-form active" data-panel="connector">
+              <label>
+                <span data-i18n="form.name">Name</span>
+                <input name="name" type="text" autocomplete="name" data-i18n-placeholder="form.namePlaceholder" placeholder="Your name" />
+              </label>
+              <label>
+                <span data-i18n="form.domain">Strongest domain</span>
+                <input name="domain" type="text" data-i18n-placeholder="form.domainPlaceholder" placeholder="AI SaaS, Japan GTM, executive search" />
+              </label>
+              <label class="full">
+                <span data-i18n="form.network">Who can you credibly introduce?</span>
+                <textarea name="network" rows="3" data-i18n-placeholder="form.networkPlaceholder" placeholder="CIOs, CFOs, VP Sales, founders, investors"></textarea>
+              </label>
+              <label>
+                <span data-i18n="form.contact">Contact</span>
+                <input name="contact" type="text" autocomplete="email" data-i18n-placeholder="form.contactPlaceholder" placeholder="Email or LinkedIn" />
+              </label>
+              <button class="button button-primary full" type="submit" data-i18n="form.generate">Generate application summary</button>
+            </form>
+
+            <form class="apply-form" data-panel="publisher">
+              <label>
+                <span data-i18n="form.opportunity">Opportunity</span>
+                <input name="opportunity" type="text" data-i18n-placeholder="form.opportunityPlaceholder" placeholder="VP Sales Japan / Enterprise AI intro" />
+              </label>
+              <label>
+                <span data-i18n="form.target">Target profile</span>
+                <input name="target" type="text" data-i18n-placeholder="form.targetPlaceholder" placeholder="Who exactly should be introduced?" />
+              </label>
+              <label class="full">
+                <span data-i18n="form.reward">Reward terms</span>
+                <input name="reward" type="text" data-i18n-placeholder="form.rewardPlaceholder" placeholder="$1k qualified meeting + success reward" />
+              </label>
+              <label>
+                <span data-i18n="form.contact">Contact</span>
+                <input name="contact" type="text" autocomplete="email" data-i18n-placeholder="form.contactPlaceholder" placeholder="Email or LinkedIn" />
+              </label>
+              <button class="button button-primary full" type="submit" data-i18n="form.generate">Generate application summary</button>
+            </form>
+
+            <div class="summary" aria-live="polite">
+              <p id="summaryText" data-i18n="summary.default">Complete the form to generate a concise review summary for Tom.</p>
+              <button class="text-button" type="button" data-copy-target="summaryText" data-i18n="summary.copy">Copy summary</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>724.fund</span>
+      <a href="mailto:tom@724.fund">tom@724.fund</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
