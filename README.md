@@ -15,6 +15,7 @@ The public homepage defaults to English and includes Chinese and Japanese langua
 - `robots.txt` - crawler policy.
 - `docs/product-blueprint.md` - product, team, trust model, AI-native roadmap, and launch plan.
 - `docs/security-audit.md` - static-site security audit notes and residual risks.
+- `docs/self-improving-agent-os.md` - operating system for monitoring failures and turning them into product, data, AI, and workflow improvements.
 
 ## Local Preview
 

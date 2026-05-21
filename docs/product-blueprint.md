@@ -247,6 +247,14 @@ Deal Room Agent
 - Tracks next steps, silence, overdue replies, and payout triggers.
 - Keeps an audit trail.
 
+Monitoring Agent
+
+- Watches every query, recommendation, submission, rejection, dispute, and payout event.
+- Classifies failures by cause: missing data, bad retrieval, bad ranking, missing tool, missing database view, weak skill file, missing eval, bad UX, trust risk, or legal risk.
+- Proposes the smallest patch that would prevent the same failure from recurring.
+- Creates issues or code/prompt/data-view changes for human or agent review.
+- Measures whether the next similar query or workflow improves.
+
 Tom Agent
 
 - Encodes the founder's judgment framework:
@@ -322,6 +330,7 @@ Day 7: Controlled launch
 - Publicly announce invite-only beta.
 - Publish first anonymized outcome dashboard.
 - Keep the product scarce: more quality, less volume.
+- Start the daily self-improvement loop: every failed query, rejected intro, and manual workaround becomes a patch candidate.
 
 ## 11. Team
 
