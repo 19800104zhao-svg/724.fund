@@ -9,13 +9,14 @@ The public homepage defaults to English and includes Chinese and Japanese langua
 ## Files
 
 - `index.html` - static launch page for the first public MVP.
+- `login.html` - demo sign-in and role selection flow for connector, opportunity owner, and trust operator workspaces.
 - `opportunities.html` - connector-facing opportunity board with claim and intro demo flows.
 - `linkedin.html` - LinkedIn identity/network-context demo and production integration notes.
 - `deal-room.html` - interaction workspace for claims, consent, review, and payout milestones.
 - `trust.html` - trust operations and Monitoring Agent review surface.
 - `publish.html` - opportunity owner intake and Tom Agent brief generation.
 - `styles.css` - responsive site styling.
-- `app.js` - lightweight interactions for tabs, form summaries, and copy actions.
+- `app.js` - lightweight interactions for tabs, form summaries, demo auth state, local workflows, and copy actions.
 - `SECURITY.md` - current static-site controls and requirements before adding dynamic features.
 - `robots.txt` - crawler policy.
 - `docs/product-blueprint.md` - product, team, trust model, AI-native roadmap, and launch plan.

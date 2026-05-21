@@ -1,5 +1,7 @@
 const translations = {
   en: {
+    "auth.signIn": "Sign in",
+    "auth.launchApp": "Launch app",
     "nav.trust": "Trust",
     "nav.ai": "AI Layer",
     "nav.apply": "Apply",
@@ -7,7 +9,8 @@ const translations = {
     "hero.title": "Trusted introductions for high-value business and talent opportunities.",
     "hero.lede":
       "724.fund turns access, judgment, and trust into a 24/7 opportunity agent. Curated opportunities, verified connectors, consent-first referrals, and staged rewards.",
-    "hero.connectorCta": "Apply as a connector",
+    "hero.loginCta": "Sign in to workspace",
+    "hero.connectorCta": "Browse opportunities",
     "hero.publisherCta": "Publish an opportunity",
     "hero.p1": "Invite-only beta",
     "hero.p2": "No cold lead spam",
@@ -67,6 +70,8 @@ const translations = {
     "summary.reward": "Reward"
   },
   zh: {
+    "auth.signIn": "登录",
+    "auth.launchApp": "进入工作台",
     "nav.trust": "信任",
     "nav.ai": "AI 层",
     "nav.apply": "申请",
@@ -74,7 +79,8 @@ const translations = {
     "hero.title": "为高价值商业和人才机会，建立可信介绍网络。",
     "hero.lede":
       "724.fund 把人脉、判断力和信任变成 7x24 小时工作的机会 Agent。精选机会、验证推荐人、先同意后介绍、分阶段结算。",
-    "hero.connectorCta": "申请成为推荐人",
+    "hero.loginCta": "登录工作台",
+    "hero.connectorCta": "浏览机会",
     "hero.publisherCta": "发布高价值机会",
     "hero.p1": "邀请制内测",
     "hero.p2": "拒绝冷线索垃圾",
@@ -134,6 +140,8 @@ const translations = {
     "summary.reward": "奖励"
   },
   ja: {
+    "auth.signIn": "ログイン",
+    "auth.launchApp": "ワークスペースへ",
     "nav.trust": "信頼",
     "nav.ai": "AI レイヤー",
     "nav.apply": "申請",
@@ -141,7 +149,8 @@ const translations = {
     "hero.title": "高価値な事業機会と人材機会のための、信頼できる紹介ネットワーク。",
     "hero.lede":
       "724.fund はアクセス、判断力、信頼を 24 時間働く Opportunity Agent に変えます。厳選された案件、認証済みコネクター、同意ベースの紹介、段階的な報酬設計。",
-    "hero.connectorCta": "コネクターとして申請",
+    "hero.loginCta": "ワークスペースにログイン",
+    "hero.connectorCta": "機会を見る",
     "hero.publisherCta": "機会を掲載する",
     "hero.p1": "招待制ベータ",
     "hero.p2": "コールドリード禁止",
@@ -241,7 +250,10 @@ function summarize(form) {
 }
 
 langButtons.forEach((button) => {
-  button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  button.addEventListener("click", () => {
+    applyLanguage(button.dataset.lang);
+    renderAuthHeader();
+  });
 });
 
 tabs.forEach((tab) => {
@@ -281,6 +293,9 @@ applyLanguage("en");
 
 const demoStateKey = "724.demo.state";
 const seedState = {
+  loggedIn: false,
+  role: "",
+  userName: "",
   linkedinConnected: false,
   networkContext: "",
   claimed: [],
@@ -382,6 +397,18 @@ function saveDemoState(nextState) {
 
 const demoState = loadDemoState();
 
+const workspaceByRole = {
+  connector: "opportunities.html",
+  publisher: "publish.html",
+  trust: "trust.html"
+};
+
+const roleLabels = {
+  connector: "Connector",
+  publisher: "Opportunity owner",
+  trust: "Trust operator"
+};
+
 function node(tag, className, text) {
   const element = document.createElement(tag);
   if (className) element.className = className;
@@ -401,6 +428,75 @@ function addActivity(message) {
   demoState.activity.unshift(message);
   demoState.activity = demoState.activity.slice(0, 8);
   saveDemoState(demoState);
+}
+
+function selectedRole() {
+  const input = document.querySelector("[data-role-input]");
+  return input?.value || demoState.role || "connector";
+}
+
+function selectRole(role) {
+  const nextRole = workspaceByRole[role] ? role : "connector";
+  document.querySelectorAll("[data-role]").forEach((button) => {
+    const active = button.dataset.role === nextRole;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+  const input = document.querySelector("[data-role-input]");
+  if (input) input.value = nextRole;
+}
+
+function renderAuthHeader() {
+  const role = workspaceByRole[demoState.role] ? demoState.role : "connector";
+  const workspace = workspaceByRole[role];
+
+  document.querySelectorAll("[data-auth-label]").forEach((link) => {
+    if (demoState.loggedIn) {
+      link.textContent = "Sign out";
+      link.setAttribute("href", "login.html");
+      link.dataset.action = "sign-out";
+      return;
+    }
+    link.textContent = link.dataset.i18n ? t(link.dataset.i18n) : "Sign in";
+    link.setAttribute("href", "login.html");
+    delete link.dataset.action;
+  });
+
+  document.querySelectorAll("[data-workspace-link]").forEach((link) => {
+    if (demoState.loggedIn) {
+      link.textContent = `${roleLabels[role]} workspace`;
+      link.setAttribute("href", workspace);
+      return;
+    }
+    link.textContent = link.dataset.i18n ? t(link.dataset.i18n) : "Launch app";
+    link.setAttribute("href", "login.html");
+  });
+}
+
+function renderLoginPage() {
+  if (!document.querySelector(".login-form")) return;
+  selectRole(demoState.role || "connector");
+  const identityInput = document.querySelector('.login-form input[name="identity"]');
+  if (identityInput && demoState.userName) identityInput.value = demoState.userName;
+}
+
+function completeDemoLogin(method, form) {
+  const loginForm = form || document.querySelector(".login-form");
+  const data = loginForm ? new FormData(loginForm) : new FormData();
+  const role = workspaceByRole[data.get("role")] ? data.get("role") : selectedRole();
+  const identity = String(data.get("identity") || "").trim() || (method === "linkedin" ? "LinkedIn demo user" : "Demo user");
+
+  demoState.loggedIn = true;
+  demoState.role = role;
+  demoState.userName = identity;
+  if (method === "linkedin") demoState.linkedinConnected = true;
+  addActivity(`Signed in as ${roleLabels[role]}: ${identity}.`);
+  saveDemoState(demoState);
+  renderAuthHeader();
+  showToast(`Signed in. Opening ${roleLabels[role]} workspace.`);
+  window.setTimeout(() => {
+    window.location.href = workspaceByRole[role];
+  }, 450);
 }
 
 function renderOpportunityBoard(filter = "all") {
@@ -542,6 +638,30 @@ function bindDemoEvents() {
     if (!target) return;
     const action = target.dataset.action;
 
+    if (action === "sign-out") {
+      event.preventDefault();
+      demoState.loggedIn = false;
+      demoState.role = "";
+      demoState.userName = "";
+      saveDemoState(demoState);
+      renderAuthHeader();
+      renderLoginPage();
+      showToast("Signed out.");
+      return;
+    }
+
+    if (action === "choose-role") {
+      event.preventDefault();
+      selectRole(target.dataset.role);
+      return;
+    }
+
+    if (action === "demo-linkedin-login") {
+      event.preventDefault();
+      completeDemoLogin("linkedin", target.closest("form"));
+      return;
+    }
+
     if (action === "claim-opportunity") {
       const id = target.dataset.id;
       if (!demoState.claimed.includes(id)) demoState.claimed.push(id);
@@ -568,9 +688,12 @@ function bindDemoEvents() {
     }
 
     if (action === "connect-linkedin") {
+      demoState.loggedIn = true;
+      demoState.role = demoState.role || "connector";
       demoState.linkedinConnected = true;
       saveDemoState(demoState);
       renderLinkedInPage();
+      renderAuthHeader();
       showToast("LinkedIn demo identity connected.");
     }
 
@@ -596,6 +719,10 @@ function bindDemoEvents() {
       event.preventDefault();
       const action = form.dataset.action;
       const data = new FormData(form);
+
+      if (action === "demo-login") {
+        completeDemoLogin("email", form);
+      }
 
       if (action === "save-network") {
         demoState.networkContext = data.get("network") || "";
@@ -630,6 +757,8 @@ function bindDemoEvents() {
 }
 
 bindDemoEvents();
+renderAuthHeader();
+renderLoginPage();
 renderOpportunityBoard();
 renderLinkedInPage();
 renderDealRoom();

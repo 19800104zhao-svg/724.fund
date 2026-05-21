@@ -14,7 +14,7 @@
   - `connect-src 'none'`
   - `object-src 'none'`
   - `base-uri 'none'`
-- Forms and demo workflows generate local summaries, claims, review events, and brief outputs only. They do not transmit data.
+- Forms and demo workflows generate local summaries, demo sign-in state, claims, review events, and brief outputs only. They do not transmit data.
 - Demo state is stored in browser `localStorage` under `724.demo.state`; it is not a production data store.
 - Language selection is limited to a fixed translation dictionary.
 - User-provided text is written with `textContent`, not `innerHTML`.
@@ -22,8 +22,9 @@
 
 ## Pre-Launch Requirements For Dynamic Features
 
-Before adding accounts, payments, AI APIs, databases, or intake submission:
+Before adding real accounts, payments, AI APIs, databases, or intake submission:
 
+- Replace demo login with server-backed authentication, secure sessions, and LinkedIn OpenID Connect where appropriate.
 - Add server-side validation and rate limiting.
 - Add server-side persistence for claims, intros, trust reviews, and deal-room messages.
 - Add CSRF protection for state-changing requests.

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>Sign in - 724.fund</title>
+    <meta name="description" content="Sign in to the 724.fund trusted opportunity workspace." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="opportunities.html">Opportunities</a>
+        <a href="linkedin.html">LinkedIn</a>
+        <a href="deal-room.html">Deal Room</a>
+        <a href="trust.html">Trust Ops</a>
+        <a href="publish.html">Publish</a>
+      </nav>
+      <div class="header-actions auth-actions">
+        <a class="small-link active" href="login.html" data-auth-label>Sign in</a>
+        <a class="small-link small-link-dark" href="login.html" data-workspace-link>Launch app</a>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-layout">
+        <div class="auth-copy">
+          <p class="eyebrow">Private beta access</p>
+          <h1>Enter the trusted opportunity workspace.</h1>
+          <p class="page-lede">
+            Choose your role, connect identity, and let Tom Agent route you to the right workflow. Real launch will use LinkedIn OpenID Connect, backend sessions, server-side audit logs, and admin approval.
+          </p>
+          <div class="auth-proof">
+            <div><span>01</span><strong>Verified identity</strong></div>
+            <div><span>02</span><strong>Role-based workspace</strong></div>
+            <div><span>03</span><strong>Consent-first matching</strong></div>
+          </div>
+        </div>
+
+        <section class="login-panel" aria-label="Sign in">
+          <div class="panel-heading">
+            <p class="eyebrow">Sign in</p>
+            <h2>Start as</h2>
+          </div>
+          <form class="login-form" data-action="demo-login">
+            <label>
+              Name or email
+              <input name="identity" type="text" autocomplete="email" placeholder="tom@724.fund" required />
+            </label>
+
+            <fieldset class="role-grid">
+              <legend>Workspace role</legend>
+              <button class="role-card active" type="button" data-action="choose-role" data-role="connector" aria-pressed="true">
+                <span>Connector</span>
+                <strong>Find opportunities and submit warm intros.</strong>
+              </button>
+              <button class="role-card" type="button" data-action="choose-role" data-role="publisher" aria-pressed="false">
+                <span>Opportunity owner</span>
+                <strong>Publish vetted business or talent opportunities.</strong>
+              </button>
+              <button class="role-card" type="button" data-action="choose-role" data-role="trust" aria-pressed="false">
+                <span>Trust operator</span>
+                <strong>Review risk, duplicates, consent, and abuse.</strong>
+              </button>
+            </fieldset>
+            <input type="hidden" name="role" value="connector" data-role-input />
+
+            <div class="button-row">
+              <button class="button button-primary" type="submit">Continue to workspace</button>
+              <button class="button button-light" type="button" data-action="demo-linkedin-login">Continue with LinkedIn demo</button>
+            </div>
+          </form>
+          <p class="auth-note">
+            Demo login stores state only in this browser. Production will not scrape LinkedIn or store credentials in the frontend.
+          </p>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

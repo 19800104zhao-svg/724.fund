@@ -30,10 +30,16 @@
         <a href="publish.html">Publish</a>
       </nav>
 
-      <div class="header-actions" aria-label="Language selector">
-        <button class="lang-button active" type="button" data-lang="en">EN</button>
-        <button class="lang-button" type="button" data-lang="zh">中文</button>
-        <button class="lang-button" type="button" data-lang="ja">日本語</button>
+      <div class="header-actions home-actions" aria-label="Language and account">
+        <div class="language-switcher" aria-label="Language selector">
+          <button class="lang-button active" type="button" data-lang="en">EN</button>
+          <button class="lang-button" type="button" data-lang="zh">中文</button>
+          <button class="lang-button" type="button" data-lang="ja">日本語</button>
+        </div>
+        <nav class="auth-links" aria-label="Account">
+          <a class="small-link" href="login.html" data-auth-label data-i18n="auth.signIn">Sign in</a>
+          <a class="small-link small-link-dark" href="login.html" data-workspace-link data-i18n="auth.launchApp">Launch app</a>
+        </nav>
       </div>
     </header>
 
@@ -46,7 +52,8 @@
             724.fund turns access, judgment, and trust into a 24/7 opportunity agent. Curated opportunities, verified connectors, consent-first referrals, and staged rewards.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="opportunities.html" data-i18n="hero.connectorCta">Apply as a connector</a>
+            <a class="button button-primary" href="login.html" data-i18n="hero.loginCta">Sign in to workspace</a>
+            <a class="button button-secondary" href="opportunities.html" data-i18n="hero.connectorCta">Browse opportunities</a>
             <a class="button button-secondary" href="publish.html" data-i18n="hero.publisherCta">Publish an opportunity</a>
           </div>
           <div class="principles" aria-label="Principles">
