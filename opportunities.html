@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>Opportunities - 724.fund</title>
+    <meta name="description" content="Curated high-value business and senior talent referral opportunities on 724.fund." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="active" href="opportunities.html">Opportunities</a>
+        <a href="linkedin.html">LinkedIn</a>
+        <a href="deal-room.html">Deal Room</a>
+        <a href="trust.html">Trust Ops</a>
+        <a href="publish.html">Publish</a>
+      </nav>
+      <div class="header-actions">
+        <a class="small-link" href="deal-room.html">Open workspace</a>
+      </div>
+    </header>
+
+    <main class="app-page">
+      <section class="page-hero">
+        <p class="eyebrow">Opportunity desk</p>
+        <h1>Curated bounties for connectors with real access.</h1>
+        <p class="page-lede">Browse vetted opportunities, claim the ones you can credibly help, and submit consent-first introductions. This is a working demo of the core connector flow.</p>
+      </section>
+
+      <section class="toolbar" aria-label="Opportunity filters">
+        <button class="chip active" type="button" data-filter="all">All</button>
+        <button class="chip" type="button" data-filter="talent">Senior talent</button>
+        <button class="chip" type="button" data-filter="business">B2B intro</button>
+        <button class="chip" type="button" data-filter="restricted">Restricted</button>
+        <span class="toolbar-status" id="opportunityStatus">3 vetted opportunities</span>
+      </section>
+
+      <section class="opportunity-board" id="opportunityBoard" aria-live="polite"></section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

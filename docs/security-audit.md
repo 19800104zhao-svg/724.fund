@@ -16,6 +16,7 @@ The current implementation has a deliberately small attack surface:
 - No network submission from forms.
 - No external API calls.
 - No secrets or credentials in the repository.
+- Demo workflow state is stored only in browser `localStorage`.
 
 ## Controls Reviewed
 
@@ -51,7 +52,13 @@ Note: GitHub Pages does not apply custom `_headers`. If GitHub Pages is used, th
 
 Status: Pass
 
-Forms are local-only. They generate an application summary in the browser and do not send data to any server.
+Forms are local-only. They generate application summaries, opportunity briefs, deal-room activity, and demo review events in the browser and do not send data to any server.
+
+### Demo Storage
+
+Status: Pass for prototype scope
+
+The frontend uses `localStorage` for demo-only state under `724.demo.state`. This is suitable only for the current static prototype. Production must move claims, introductions, messages, trust decisions, and audit logs to an authenticated backend with server-side validation and authorization.
 
 ### Clipboard
 

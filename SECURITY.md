@@ -14,7 +14,8 @@
   - `connect-src 'none'`
   - `object-src 'none'`
   - `base-uri 'none'`
-- Forms generate local summaries only. They do not transmit data.
+- Forms and demo workflows generate local summaries, claims, review events, and brief outputs only. They do not transmit data.
+- Demo state is stored in browser `localStorage` under `724.demo.state`; it is not a production data store.
 - Language selection is limited to a fixed translation dictionary.
 - User-provided text is written with `textContent`, not `innerHTML`.
 - Clipboard access only occurs after an explicit user click.
@@ -24,6 +25,7 @@
 Before adding accounts, payments, AI APIs, databases, or intake submission:
 
 - Add server-side validation and rate limiting.
+- Add server-side persistence for claims, intros, trust reviews, and deal-room messages.
 - Add CSRF protection for state-changing requests.
 - Add authentication with MFA for admin surfaces.
 - Store secrets only in the deployment platform secret manager.

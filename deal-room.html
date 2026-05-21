@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>Deal Room - 724.fund</title>
+    <meta name="description" content="Connector and opportunity owner interaction workspace for 724.fund." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="opportunities.html">Opportunities</a>
+        <a href="linkedin.html">LinkedIn</a>
+        <a class="active" href="deal-room.html">Deal Room</a>
+        <a href="trust.html">Trust Ops</a>
+        <a href="publish.html">Publish</a>
+      </nav>
+      <div class="header-actions">
+        <a class="small-link" href="trust.html">Review queue</a>
+      </div>
+    </header>
+
+    <main class="app-page">
+      <section class="page-hero compact">
+        <p class="eyebrow">Interaction layer</p>
+        <h1>Track claims, consent, submitted introductions, owner review, and payout milestones.</h1>
+        <p class="page-lede">This page is the missing user-to-user workflow: connector actions, opportunity owner responses, audit trail, and Tom Agent next steps.</p>
+      </section>
+
+      <section class="deal-layout">
+        <div class="pipeline" id="pipelineBoard"></div>
+        <aside class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Message composer</p>
+            <h2>Consent-first outreach</h2>
+          </div>
+          <form class="stack-form" data-action="send-message">
+            <label>
+              To
+              <input name="to" type="text" placeholder="Candidate or buyer" />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="6">I saw a confidential opportunity that may fit your background. If you are open to it, I can first share an anonymized brief and only introduce you after you confirm interest.</textarea>
+            </label>
+            <button class="button button-primary" type="submit">Log consent message</button>
+          </form>
+          <div class="activity-feed" id="activityFeed"></div>
+        </aside>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

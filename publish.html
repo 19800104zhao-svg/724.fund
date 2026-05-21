@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>Publish Opportunity - 724.fund</title>
+    <meta name="description" content="Publish a vetted high-value opportunity on 724.fund." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="opportunities.html">Opportunities</a>
+        <a href="linkedin.html">LinkedIn</a>
+        <a href="deal-room.html">Deal Room</a>
+        <a href="trust.html">Trust Ops</a>
+        <a class="active" href="publish.html">Publish</a>
+      </nav>
+      <div class="header-actions">
+        <a class="small-link" href="opportunities.html">Preview board</a>
+      </div>
+    </header>
+
+    <main class="app-page">
+      <section class="page-hero compact">
+        <p class="eyebrow">Opportunity intake</p>
+        <h1>Publish only if the reward, target, and acceptance standard are real.</h1>
+        <p class="page-lede">Tom Agent converts messy opportunity requests into a structured bounty brief. Mina reviews trust and compliance risk before any connector sees sensitive information.</p>
+      </section>
+
+      <section class="two-column">
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Intake form</p>
+            <h2>Generate a structured brief</h2>
+          </div>
+          <form class="stack-form" data-action="generate-brief">
+            <label>
+              Opportunity name
+              <input name="name" type="text" placeholder="Japan VP Sales / Enterprise AI buyer intro" />
+            </label>
+            <label>
+              Target
+              <input name="target" type="text" placeholder="Japan manufacturing CIOs, CFOs, GTM leaders" />
+            </label>
+            <label>
+              Reward
+              <input name="reward" type="text" placeholder="$1k qualified meeting + success reward" />
+            </label>
+            <label>
+              Disqualifiers
+              <textarea name="disqualifiers" rows="4" placeholder="No cold outreach. Must have direct relationship and consent."></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Generate Tom Agent brief</button>
+          </form>
+        </article>
+
+        <article class="panel brief-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Generated brief</p>
+            <h2 id="briefTitle">Waiting for intake</h2>
+          </div>
+          <div class="brief-output" id="briefOutput">Fill the form to generate a connector-ready opportunity brief with acceptance standards, proof requirements, and trust checks.</div>
+        </article>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -278,3 +278,359 @@ document.querySelectorAll("[data-copy-target]").forEach((button) => {
 });
 
 applyLanguage("en");
+
+const demoStateKey = "724.demo.state";
+const seedState = {
+  linkedinConnected: false,
+  networkContext: "",
+  claimed: [],
+  introductions: [
+    {
+      id: "intro-001",
+      opportunity: "VP Sales, Japan",
+      person: "Former enterprise GTM leader",
+      status: "Owner review",
+      risk: "Medium",
+      note: "Consent confirmed. Needs non-compete check."
+    }
+  ],
+  activity: [
+    "Tom Agent created a review packet for VP Sales, Japan.",
+    "Mina flagged non-compete as a required proof."
+  ],
+  reviews: [
+    {
+      id: "review-001",
+      title: "Duplicate claim risk",
+      detail: "Two connectors submitted the same manufacturing CFO within 24 hours.",
+      severity: "High"
+    },
+    {
+      id: "review-002",
+      title: "Weak relationship proof",
+      detail: "Connector says they can reach buyer, but only provides a cold LinkedIn URL.",
+      severity: "Medium"
+    }
+  ]
+};
+
+const opportunities = [
+  {
+    id: "opp-sales-japan",
+    type: "talent",
+    tag: "Senior talent",
+    title: "VP Sales, Japan",
+    reward: "$8k - $30k",
+    target: "Enterprise GTM leader with Japan network",
+    fit: "Best for connectors who know SaaS country managers, regional sales leaders, or ex-Rakuten/Salesforce operators.",
+    proof: "Candidate consent, compensation range check, non-compete note.",
+    score: 92
+  },
+  {
+    id: "opp-ai-manufacturing",
+    type: "business",
+    tag: "B2B intro",
+    title: "Enterprise AI buyer intro",
+    reward: "$1k meeting + success",
+    target: "Japan manufacturing CIO/CFO at $500M+ revenue company",
+    fit: "Best for connectors with direct access to manufacturing executives or transformation leaders.",
+    proof: "Direct relationship context, consent to intro, no cold mass outreach.",
+    score: 87
+  },
+  {
+    id: "opp-cross-border",
+    type: "restricted",
+    tag: "Restricted",
+    title: "Cross-border acquisition advisor",
+    reward: "Invite-only",
+    target: "Operator or advisor with Japan-US M&A experience",
+    fit: "Visible only to high-trust connectors because of legal and conflict risk.",
+    proof: "Conflict check, advisor background, jurisdiction review.",
+    score: 78
+  }
+];
+
+const failureLog = [
+  {
+    title: "No result for petrochemical query",
+    root: "Missing data",
+    patch: "Add industry tags and founder expertise view."
+  },
+  {
+    title: "Weak intros accepted into owner review",
+    root: "Missing deterministic tool",
+    patch: "Require relationship proof score before submission."
+  },
+  {
+    title: "Connector unsure what counts as consent",
+    root: "Missing skill file",
+    patch: "Create consent-first outreach examples and rejection rules."
+  }
+];
+
+function loadDemoState() {
+  try {
+    return { ...seedState, ...JSON.parse(localStorage.getItem(demoStateKey) || "{}") };
+  } catch {
+    return { ...seedState };
+  }
+}
+
+function saveDemoState(nextState) {
+  localStorage.setItem(demoStateKey, JSON.stringify(nextState));
+}
+
+const demoState = loadDemoState();
+
+function node(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("visible");
+  setTimeout(() => toast.classList.remove("visible"), 2200);
+}
+
+function addActivity(message) {
+  demoState.activity.unshift(message);
+  demoState.activity = demoState.activity.slice(0, 8);
+  saveDemoState(demoState);
+}
+
+function renderOpportunityBoard(filter = "all") {
+  const board = document.getElementById("opportunityBoard");
+  if (!board) return;
+  board.replaceChildren();
+
+  const visible = opportunities.filter((item) => filter === "all" || item.type === filter);
+  const status = document.getElementById("opportunityStatus");
+  if (status) status.textContent = `${visible.length} vetted opportunities`;
+
+  visible.forEach((item) => {
+    const card = node("article", "product-card");
+    const top = node("div", "card-meta");
+    top.append(node("span", "", item.tag));
+    top.append(node("strong", "", item.reward));
+
+    const title = node("h2", "", item.title);
+    const target = node("p", "muted", item.target);
+    const score = node("div", "score-line");
+    score.append(node("span", "", `Tom Agent fit ${item.score}`));
+    score.append(node("span", "", item.proof));
+
+    const fit = node("p", "", item.fit);
+    const actions = node("div", "button-row");
+    const claim = node("button", "button button-primary", demoState.claimed.includes(item.id) ? "Claimed" : "Claim opportunity");
+    claim.type = "button";
+    claim.dataset.action = "claim-opportunity";
+    claim.dataset.id = item.id;
+    claim.disabled = demoState.claimed.includes(item.id);
+    const submit = node("button", "button button-light", "Submit intro");
+    submit.type = "button";
+    submit.dataset.action = "submit-intro";
+    submit.dataset.id = item.id;
+    actions.append(claim, submit);
+    card.append(top, title, target, score, fit, actions);
+    board.append(card);
+  });
+}
+
+function renderLinkedInPage() {
+  const statusTitle = document.getElementById("linkedinStatusTitle");
+  if (!statusTitle) return;
+  statusTitle.textContent = demoState.linkedinConnected ? "LinkedIn identity connected" : "LinkedIn not connected";
+  const identityState = document.getElementById("identityState");
+  if (identityState) identityState.textContent = demoState.linkedinConnected ? "Verified demo" : "Pending";
+
+  const networkInput = document.querySelector('[data-action="save-network"] textarea');
+  if (networkInput && demoState.networkContext) networkInput.value = demoState.networkContext;
+
+  const list = document.getElementById("recommendationList");
+  if (!list) return;
+  list.replaceChildren();
+  opportunities.forEach((item) => {
+    const row = node("article", "recommendation-item");
+    row.append(node("span", "pill", item.tag));
+    row.append(node("h3", "", item.title));
+    const reason = demoState.networkContext
+      ? `Use your saved network context to find 3-5 warm paths. Required proof: ${item.proof}`
+      : `Connect demo identity and add network context before Tom Agent ranks warm paths.`;
+    row.append(node("p", "muted", reason));
+    row.append(node("strong", "", `Fit score ${item.score}`));
+    list.append(row);
+  });
+}
+
+function renderDealRoom() {
+  const board = document.getElementById("pipelineBoard");
+  if (!board) return;
+  board.replaceChildren();
+  const columns = [
+    ["Claimed", demoState.claimed.map((id) => opportunities.find((item) => item.id === id)?.title).filter(Boolean)],
+    ["Consent requested", ["Former GTM leader", "Manufacturing CFO"]],
+    ["Owner review", demoState.introductions.map((item) => item.person)],
+    ["Payout milestone", ["Qualified meeting pending"]]
+  ];
+  columns.forEach(([title, items]) => {
+    const column = node("section", "pipeline-column");
+    column.append(node("h2", "", title));
+    items.length ? items.forEach((item) => column.append(node("p", "pipeline-item", item))) : column.append(node("p", "muted", "No items yet"));
+    board.append(column);
+  });
+  renderActivityFeed();
+}
+
+function renderActivityFeed() {
+  const feed = document.getElementById("activityFeed");
+  if (!feed) return;
+  feed.replaceChildren();
+  demoState.activity.forEach((item) => feed.append(node("p", "", item)));
+}
+
+function renderTrustOps() {
+  const queue = document.getElementById("reviewQueue");
+  if (queue) {
+    queue.replaceChildren();
+    demoState.reviews.forEach((item) => {
+      const card = node("article", "review-item");
+      card.append(node("span", "pill", item.severity));
+      card.append(node("h3", "", item.title));
+      card.append(node("p", "muted", item.detail));
+      const actions = node("div", "button-row");
+      const approve = node("button", "button button-light", "Approve with note");
+      approve.type = "button";
+      approve.dataset.action = "review-decision";
+      approve.dataset.id = item.id;
+      const reject = node("button", "button button-light", "Reject");
+      reject.type = "button";
+      reject.dataset.action = "review-decision";
+      reject.dataset.id = item.id;
+      actions.append(approve, reject);
+      card.append(actions);
+      queue.append(card);
+    });
+  }
+  const log = document.getElementById("failureLog");
+  if (log) {
+    log.replaceChildren();
+    failureLog.forEach((item) => {
+      const card = node("article", "failure-item");
+      card.append(node("h3", "", item.title));
+      card.append(node("p", "muted", `Root cause: ${item.root}`));
+      card.append(node("strong", "", `Patch: ${item.patch}`));
+      log.append(card);
+    });
+  }
+}
+
+function bindDemoEvents() {
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll("[data-filter]").forEach((item) => item.classList.toggle("active", item === button));
+      renderOpportunityBoard(button.dataset.filter);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest("[data-action]");
+    if (!target) return;
+    const action = target.dataset.action;
+
+    if (action === "claim-opportunity") {
+      const id = target.dataset.id;
+      if (!demoState.claimed.includes(id)) demoState.claimed.push(id);
+      const opportunity = opportunities.find((item) => item.id === id);
+      addActivity(`Claimed opportunity: ${opportunity?.title || id}.`);
+      saveDemoState(demoState);
+      renderOpportunityBoard(document.querySelector("[data-filter].active")?.dataset.filter || "all");
+      showToast("Opportunity claimed. Added to Deal Room.");
+    }
+
+    if (action === "submit-intro") {
+      const opportunity = opportunities.find((item) => item.id === target.dataset.id);
+      demoState.introductions.unshift({
+        id: `intro-${Date.now()}`,
+        opportunity: opportunity?.title || "Opportunity",
+        person: "Consent-confirmed warm path",
+        status: "Owner review",
+        risk: "Low",
+        note: "Demo introduction packet generated."
+      });
+      addActivity(`Submitted intro packet for ${opportunity?.title || "opportunity"}.`);
+      saveDemoState(demoState);
+      showToast("Intro packet submitted for owner review.");
+    }
+
+    if (action === "connect-linkedin") {
+      demoState.linkedinConnected = true;
+      saveDemoState(demoState);
+      renderLinkedInPage();
+      showToast("LinkedIn demo identity connected.");
+    }
+
+    if (action === "reset-linkedin") {
+      demoState.linkedinConnected = false;
+      demoState.networkContext = "";
+      saveDemoState(demoState);
+      renderLinkedInPage();
+      showToast("LinkedIn demo reset.");
+    }
+
+    if (action === "review-decision") {
+      demoState.reviews = demoState.reviews.filter((item) => item.id !== target.dataset.id);
+      addActivity(`Trust review resolved: ${target.textContent}.`);
+      saveDemoState(demoState);
+      renderTrustOps();
+      showToast("Review resolved and audit logged.");
+    }
+  });
+
+  document.querySelectorAll("form[data-action]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const action = form.dataset.action;
+      const data = new FormData(form);
+
+      if (action === "save-network") {
+        demoState.networkContext = data.get("network") || "";
+        saveDemoState(demoState);
+        renderLinkedInPage();
+        showToast("Network context saved locally.");
+      }
+
+      if (action === "send-message") {
+        const to = data.get("to") || "Unspecified contact";
+        addActivity(`Consent message logged for ${to}.`);
+        renderActivityFeed();
+        showToast("Consent message logged.");
+      }
+
+      if (action === "generate-brief") {
+        const title = data.get("name") || "Untitled opportunity";
+        const target = data.get("target") || "Target not specified";
+        const reward = data.get("reward") || "Reward not specified";
+        const disqualifiers = data.get("disqualifiers") || "No disqualifiers provided";
+        const briefTitle = document.getElementById("briefTitle");
+        const briefOutput = document.getElementById("briefOutput");
+        if (briefTitle) briefTitle.textContent = title;
+        if (briefOutput) {
+          briefOutput.textContent = `Target: ${target}\nReward: ${reward}\nAcceptance standard: direct relationship, consent before reveal, clear business reason.\nDisqualifiers: ${disqualifiers}\nTrust gates: KYB owner review, duplicate check, relationship proof, payout trigger definition.`;
+        }
+        addActivity(`Tom Agent generated brief: ${title}.`);
+        showToast("Structured brief generated.");
+      }
+    });
+  });
+}
+
+bindDemoEvents();
+renderOpportunityBoard();
+renderLinkedInPage();
+renderDealRoom();
+renderTrustOps();

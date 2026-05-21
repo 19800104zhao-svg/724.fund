@@ -9,12 +9,18 @@ The public homepage defaults to English and includes Chinese and Japanese langua
 ## Files
 
 - `index.html` - static launch page for the first public MVP.
+- `opportunities.html` - connector-facing opportunity board with claim and intro demo flows.
+- `linkedin.html` - LinkedIn identity/network-context demo and production integration notes.
+- `deal-room.html` - interaction workspace for claims, consent, review, and payout milestones.
+- `trust.html` - trust operations and Monitoring Agent review surface.
+- `publish.html` - opportunity owner intake and Tom Agent brief generation.
 - `styles.css` - responsive site styling.
 - `app.js` - lightweight interactions for tabs, form summaries, and copy actions.
 - `SECURITY.md` - current static-site controls and requirements before adding dynamic features.
 - `robots.txt` - crawler policy.
 - `docs/product-blueprint.md` - product, team, trust model, AI-native roadmap, and launch plan.
 - `docs/security-audit.md` - static-site security audit notes and residual risks.
+- `docs/linkedin-integration.md` - LinkedIn OIDC integration plan, backend endpoints, and compliance rules.
 - `docs/self-improving-agent-os.md` - operating system for monitoring failures and turning them into product, data, AI, and workflow improvements.
 
 ## Local Preview

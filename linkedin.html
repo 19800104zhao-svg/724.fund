@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>LinkedIn Network - 724.fund</title>
+    <meta name="description" content="LinkedIn connection and relationship intelligence workflow for 724.fund." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="opportunities.html">Opportunities</a>
+        <a class="active" href="linkedin.html">LinkedIn</a>
+        <a href="deal-room.html">Deal Room</a>
+        <a href="trust.html">Trust Ops</a>
+        <a href="publish.html">Publish</a>
+      </nav>
+      <div class="header-actions">
+        <a class="small-link" href="opportunities.html">Find matches</a>
+      </div>
+    </header>
+
+    <main class="app-page">
+      <section class="page-hero compact">
+        <p class="eyebrow">Relationship intelligence</p>
+        <h1>Connect LinkedIn identity, then let Tom Agent reason over consent-safe context.</h1>
+        <p class="page-lede">Production uses LinkedIn OpenID Connect for login and a backend token exchange. The demo below uses local sample network context only. No scraping, no browser cookies, no automated LinkedIn actions.</p>
+      </section>
+
+      <section class="two-column">
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Connection status</p>
+            <h2 id="linkedinStatusTitle">LinkedIn not connected</h2>
+          </div>
+          <p class="muted">Use demo connect to simulate identity verification. Production setup requires a LinkedIn Developer app with Sign In with LinkedIn using OpenID Connect, `openid profile email`, and a server callback.</p>
+          <div class="button-row">
+            <button class="button button-primary" type="button" data-action="connect-linkedin">Connect LinkedIn demo</button>
+            <button class="button button-light" type="button" data-action="reset-linkedin">Reset</button>
+          </div>
+          <div class="status-list">
+            <div><span>Identity</span><strong id="identityState">Pending</strong></div>
+            <div><span>Permissions</span><strong>OIDC only</strong></div>
+            <div><span>Network source</span><strong>User-provided context</strong></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Network context</p>
+            <h2>Paste people you can credibly reach</h2>
+          </div>
+          <form class="stack-form" data-action="save-network">
+            <label>
+              People or companies
+              <textarea name="network" rows="7" placeholder="Example: CFO at Toyota supplier, ex-colleague at Rakuten, VP Sales at AI infra company"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Save network context</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <p class="eyebrow">Tom Agent suggestions</p>
+          <h2>Recommended matches from current opportunities</h2>
+        </div>
+        <div class="recommendation-list" id="recommendationList"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
