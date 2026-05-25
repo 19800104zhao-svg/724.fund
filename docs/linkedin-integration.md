@@ -11,6 +11,16 @@ The product includes a LinkedIn Network page that simulates identity connection 
 - no automated LinkedIn actions
 - no storage of LinkedIn member data from unofficial sources
 
+The product also includes an AI Talent Search page. It accepts natural-language hiring needs and generates:
+
+- a structured candidate ICP
+- ranked warm-path connector routes from local demo data
+- manual LinkedIn search strings
+- consent-first outreach copy
+- Trust Ops checks before owner review
+
+This page is a compliant search-assist workflow, not a LinkedIn data extractor.
+
 ## Production Architecture
 
 Use LinkedIn Sign In with OpenID Connect for identity:

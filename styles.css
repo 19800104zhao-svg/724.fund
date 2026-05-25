@@ -878,6 +878,88 @@ textarea {
   line-height: 1.7;
 }
 
+.search-layout {
+  display: grid;
+  width: min(1180px, 100%);
+  grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.58fr);
+  gap: 18px;
+  align-items: stretch;
+  margin: 0 auto 18px;
+}
+
+.search-console textarea {
+  min-height: 180px;
+}
+
+.search-output {
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-list {
+  margin-top: auto;
+}
+
+.compact-list div {
+  padding: 13px;
+}
+
+.compact-list strong {
+  max-width: 62%;
+  text-align: right;
+  line-height: 1.4;
+}
+
+.result-grid {
+  display: grid;
+  width: min(1180px, 100%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0 auto;
+}
+
+.path-list {
+  display: grid;
+  gap: 12px;
+}
+
+.path-card {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: #fbfcfe;
+  padding: 18px;
+}
+
+.path-card h3,
+.path-card p {
+  margin-bottom: 0;
+}
+
+.path-card .button {
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.compliance-note {
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  background: #fbfcfe;
+  padding: 16px;
+}
+
+.compliance-note strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.compliance-note p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .auth-page {
   min-height: calc(100vh - 64px);
   background:
@@ -1061,6 +1143,8 @@ textarea {
   .apply-panel,
   .opportunity-board,
   .two-column,
+  .search-layout,
+  .result-grid,
   .deal-layout,
   .pipeline,
   .metric-grid,
@@ -1248,5 +1332,14 @@ textarea {
 
   .pipeline-column {
     min-height: auto;
+  }
+
+  .compact-list strong {
+    max-width: none;
+    text-align: left;
+  }
+
+  .path-card .button {
+    width: 100%;
   }
 }

@@ -20,16 +20,16 @@ The product turns three invisible assets into software:
 
 Public positioning:
 
-> The AI-native trusted opportunity network for high-value business and talent referrals.
+> The invite-only AI executive talent referral network for cross-border recruiting.
 
 Sharper founder/investor positioning:
 
-> 724.fund is the bounty, trust, and settlement layer for warm introductions.
+> 724.fund is the trust, consent, and commission-sharing layer for senior AI candidate introductions.
 
 What we are:
 
 - Curated, invite-first, high-trust.
-- Built for senior recruiting and high-ticket B2B opportunities first.
+- Built for senior AI recruiting and executive search first.
 - AI-native from opportunity intake to match scoring, anti-fraud, and workflow automation.
 - Designed to protect the opportunity owner, connector, and introduced party.
 
@@ -43,14 +43,17 @@ What we are not:
 
 ## 3. Initial Market Wedge
 
-Start with two categories where warm introductions already have obvious value and legal risk is manageable with the right guardrails:
+Founder decision on 2026-05-22: the first MVP wedge is senior recruiting and executive search.
+
+Start narrow. High-ticket B2B commercial introductions remain a later expansion path, but the first operating loop should be built around high-end recruiting and headhunting because the target profile, candidate consent flow, success event, and commission-sharing model are easier to define.
 
 1. Senior recruiting and executive search referrals
    - VP, C-level, founding team, AI engineering, enterprise sales, regional leadership.
-   - Reward can be fixed bounty or percentage of first-year compensation where legally supported.
+   - Reward should primarily be a commission split based on the actual placement or search success fee, where legally and contractually supported.
    - Candidate consent is mandatory before a full referral is submitted.
+   - The first product should optimize for a small number of qualified, consent-confirmed candidate introductions.
 
-2. High-ticket B2B commercial introductions
+2. Later: high-ticket B2B commercial introductions
    - Enterprise SaaS, AI infrastructure, corporate services, cross-border expansion, professional services.
    - Reward can be staged: qualified meeting reward, opportunity reward, closed-won success reward.
    - Buyer consent or clear relationship proof is required.
@@ -60,6 +63,7 @@ Avoid as public MVP:
 - Securities fundraising, fund placement, token sales, investment products, insurance, lending, and M&A success-fee workflows until legal architecture is reviewed jurisdiction by jurisdiction.
 - Consumer affiliate offers.
 - Low-ticket lead-gen offers.
+- Public self-serve registration. Access should be invite-only and manually approved until the trust model has enough evidence.
 
 ## 4. Product Principles
 
@@ -71,6 +75,7 @@ Every design decision should reduce noise, not increase activity for its own sak
 - No full contact exposure without consent or legitimate business context.
 - No unlimited submissions from unproven connectors.
 - No public free-for-all opportunity board for sensitive opportunities.
+- No public registration in the first MVP.
 - No one-sided trust: publishers and connectors both build reputations.
 - The system should reward restraint. A connector who submits one excellent introduction is more valuable than one who submits twenty weak leads.
 
@@ -130,17 +135,21 @@ Trust Operator
 
 ### 6.3 AI-Assisted Matching
 
-1. Connector opens an opportunity.
-2. AI explains the target profile in plain language.
-3. Connector can upload or paste optional private network context:
+1. Owner or connector describes a senior AI talent need in natural language.
+2. AI converts the request into candidate ICP, must-haves, disqualifiers, geography, and trust gates.
+3. AI suggests warm connector paths from private relationship context and approved internal data.
+4. Connector opens an opportunity.
+5. AI explains the target profile in plain language.
+6. Connector can upload or paste optional private network context:
    - names only
    - company list
    - CRM export
    - LinkedIn export
    - email snippets
-4. AI suggests possible matches with confidence, reason, and risk.
-5. Connector chooses whether to contact the person.
-6. AI drafts a consent-first outreach message.
+7. AI suggests possible matches with confidence, reason, and risk.
+8. AI can generate manual LinkedIn search strings, but it must not scrape, automate messages, or store unauthorized LinkedIn member data.
+9. Connector chooses whether to contact the person.
+10. AI drafts a consent-first outreach message.
 
 ### 6.4 Submit Introduction
 
@@ -161,8 +170,8 @@ Trust Operator
 
 ### 6.5 Settlement
 
-1. Qualified intro accepted: small fixed reward can unlock after meeting or acceptance.
-2. Success event: larger reward unlocks after signed contract, hire, revenue, or agreed milestone.
+1. Qualified intro accepted: recorded for reputation and optional small milestone only if the opportunity owner explicitly supports it.
+2. Success event: commission split unlocks after documented hire, start date, paid invoice, or agreed contractual milestone.
 3. Disputes enter a documented review flow.
 4. Reputation events are written for both owner and connector.
 
@@ -224,7 +233,7 @@ The AI is not a chatbot bolted onto a marketplace. It is the operating system.
 
 Opportunity Agent
 
-- Turns messy publisher requests into structured bounty briefs.
+- Turns messy hiring requests into structured AI search mandates.
 - Creates ICP, disqualifiers, acceptance criteria, and screening questions.
 - Flags legal and fraud risk.
 
@@ -308,15 +317,17 @@ Day 3: AI brief generator
 
 Day 4: First supply
 
-- Source 10 excellent opportunities:
-  - 5 senior recruiting
-  - 5 B2B commercial introductions
+- Source 3-5 excellent senior AI search mandates:
+  - Head of AI / VP AI
+  - Principal or Staff ML Engineer
+  - AI Product or Platform leader
+  - Cross-border AI founding CTO
 - No public low-quality listings.
 
 Day 5: First connector cohort
 
-- Invite 50 carefully selected connectors.
-- Approve 20-30.
+- Invite 20-30 carefully selected connectors.
+- Approve 10-15.
 - Assign category-specific limits.
 
 Day 6: First introductions
@@ -366,7 +377,7 @@ Mina - Trust & Operations Lead
 
 Victor - Growth / BD Lead
 
-- Sources first 10 opportunities and first 50 connectors.
+- Sources first 3-5 AI search mandates and first 20-30 connectors.
 - Runs founder-led sales and beta onboarding.
 
 Claire - Fractional Legal / Compliance
@@ -407,10 +418,10 @@ Decision rules
 
 To launch in one week, the founder should provide:
 
-- 10 real opportunities or warm leads to opportunity owners.
-- 50-100 people who could become high-quality connectors.
+- 3-5 real senior AI search mandates or warm leads to hiring owners.
+- 20-30 people who could become high-quality connectors.
 - Preferred launch geography and languages.
-- Whether the first market should be recruiting-first, B2B-first, or balanced.
+- First AI talent wedge: AI leadership, principal/staff ML engineering, AI product, or cross-border founding CTO.
 - Access to domain DNS for `724.fund`.
 - Sender email to configure, ideally `tom@724.fund` or `hello@724.fund`.
 - Payment preference for the MVP: manual invoice, Stripe, Wise, bank transfer, or escrow provider.

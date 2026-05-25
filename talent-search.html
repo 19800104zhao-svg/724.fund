@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>AI Talent Search - 724.fund</title>
+    <meta
+      name="description"
+      content="Describe a senior AI talent need in natural language and generate compliant warm-path search guidance for 724.fund."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="724.fund">
+        <span class="brand-mark">724</span>
+        <span class="brand-name">fund</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="opportunities.html">Opportunities</a>
+        <a class="active" href="talent-search.html">AI Search</a>
+        <a href="deal-room.html">Deal Room</a>
+        <a href="trust.html">Trust Ops</a>
+        <a href="publish.html">Publish</a>
+      </nav>
+      <div class="header-actions auth-actions">
+        <a class="small-link" href="login.html" data-auth-label>Sign in</a>
+        <a class="small-link small-link-dark" href="login.html" data-workspace-link>Launch app</a>
+      </div>
+    </header>
+
+    <main class="app-page">
+      <section class="page-hero compact">
+        <p class="eyebrow">Tom Agent search</p>
+        <h1>Describe who you need. Get a candidate ICP, warm paths, and a consent-first search plan.</h1>
+        <p class="page-lede">
+          This demo does not scrape LinkedIn or automate outreach. It turns natural language into a structured AI talent search packet using private relationship context and manual LinkedIn search guidance.
+        </p>
+      </section>
+
+      <section class="search-layout">
+        <article class="panel search-console">
+          <div class="panel-heading">
+            <p class="eyebrow">Natural language input</p>
+            <h2>Search mandate</h2>
+          </div>
+          <form class="stack-form" data-action="talent-search">
+            <label>
+              Need
+              <textarea name="query" rows="7">Find a bilingual Head of AI in Japan who has shipped enterprise LLM products, can manage senior engineers, and is open to cross-border startup leadership.</textarea>
+            </label>
+            <div class="button-row">
+              <button class="button button-primary" type="submit">Run Tom Agent search</button>
+              <a class="button button-light" href="linkedin.html">Add relationship context</a>
+            </div>
+          </form>
+          <div class="compliance-note">
+            <strong>Boundary</strong>
+            <p>Allowed: identity login, user-provided context, manual search query suggestions, consent-first drafts. Blocked: scraping, cookie use, automated LinkedIn actions, or exposing full candidate contact before consent.</p>
+          </div>
+        </article>
+
+        <article class="panel search-output">
+          <div class="panel-heading">
+            <p class="eyebrow">Structured output</p>
+            <h2>Candidate ICP</h2>
+          </div>
+          <div class="status-list compact-list" id="candidateIcp"></div>
+        </article>
+      </section>
+
+      <section class="result-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Warm paths</p>
+            <h2>Connector routes to test first</h2>
+          </div>
+          <div class="path-list" id="warmPathList" aria-live="polite"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Manual LinkedIn assist</p>
+            <h2>Search strings and review checklist</h2>
+          </div>
+          <div class="brief-output" id="linkedinAssist"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Consent draft</p>
+            <h2>First message before disclosure</h2>
+          </div>
+          <div class="brief-output" id="outreachDraft"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Trust gates</p>
+            <h2>What must pass before owner review</h2>
+          </div>
+          <div class="failure-list" id="searchAudit"></div>
+        </article>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

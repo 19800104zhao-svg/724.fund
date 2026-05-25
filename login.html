@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Sign in - 724.fund</title>
-    <meta name="description" content="Sign in to the 724.fund trusted opportunity workspace." />
+    <meta name="description" content="Sign in to the invite-only 724.fund AI talent referral workspace." />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -20,7 +20,7 @@
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="opportunities.html">Opportunities</a>
-        <a href="linkedin.html">LinkedIn</a>
+        <a href="talent-search.html">AI Search</a>
         <a href="deal-room.html">Deal Room</a>
         <a href="trust.html">Trust Ops</a>
         <a href="publish.html">Publish</a>
@@ -34,15 +34,15 @@
     <main class="auth-page">
       <section class="auth-layout">
         <div class="auth-copy">
-          <p class="eyebrow">Private beta access</p>
-          <h1>Enter the trusted opportunity workspace.</h1>
+          <p class="eyebrow">Invite-only beta</p>
+          <h1>Enter the private AI talent workspace.</h1>
           <p class="page-lede">
-            Choose your role, connect identity, and let Tom Agent route you to the right workflow. Real launch will use LinkedIn OpenID Connect, backend sessions, server-side audit logs, and admin approval.
+            Access is manually approved. Choose your demo role to preview the workflow; real launch will require an invite, backend sessions, LinkedIn OpenID Connect, audit logs, and Trust Ops approval.
           </p>
           <div class="auth-proof">
-            <div><span>01</span><strong>Verified identity</strong></div>
-            <div><span>02</span><strong>Role-based workspace</strong></div>
-            <div><span>03</span><strong>Consent-first matching</strong></div>
+            <div><span>01</span><strong>Invite required</strong></div>
+            <div><span>02</span><strong>Role-based access</strong></div>
+            <div><span>03</span><strong>Consent-first candidates</strong></div>
           </div>
         </div>
 
@@ -61,11 +61,11 @@
               <legend>Workspace role</legend>
               <button class="role-card active" type="button" data-action="choose-role" data-role="connector" aria-pressed="true">
                 <span>Connector</span>
-                <strong>Find opportunities and submit warm intros.</strong>
+                <strong>Review AI roles and submit consent-first candidate intros.</strong>
               </button>
               <button class="role-card" type="button" data-action="choose-role" data-role="publisher" aria-pressed="false">
-                <span>Opportunity owner</span>
-                <strong>Publish vetted business or talent opportunities.</strong>
+                <span>Search owner</span>
+                <strong>Submit vetted AI hiring mandates with commission terms.</strong>
               </button>
               <button class="role-card" type="button" data-action="choose-role" data-role="trust" aria-pressed="false">
                 <span>Trust operator</span>
@@ -80,7 +80,7 @@
             </div>
           </form>
           <p class="auth-note">
-            Demo login stores state only in this browser. Production will not scrape LinkedIn or store credentials in the frontend.
+            Demo login stores state only in this browser. Production will be invite-only and will not scrape LinkedIn, store credentials in the frontend, or expose candidates before consent.
           </p>
         </section>
       </section>

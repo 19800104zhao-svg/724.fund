@@ -14,7 +14,8 @@
   - `connect-src 'none'`
   - `object-src 'none'`
   - `base-uri 'none'`
-- Forms and demo workflows generate local summaries, demo sign-in state, claims, review events, and brief outputs only. They do not transmit data.
+- Forms and demo workflows generate local summaries, demo sign-in state, claims, AI talent search packets, review events, and brief outputs only. They do not transmit data.
+- The AI talent search page uses deterministic local demo data and manual LinkedIn search guidance only. It does not scrape LinkedIn, automate browser actions, call external APIs, or store unauthorized LinkedIn member data.
 - Demo state is stored in browser `localStorage` under `724.demo.state`; it is not a production data store.
 - Language selection is limited to a fixed translation dictionary.
 - User-provided text is written with `textContent`, not `innerHTML`.
