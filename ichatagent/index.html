@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>iChatAgent Lab - 724.fund</title>
+    <meta
+      name="description"
+      content="A local, no-token iChatAgent-style character workspace for 724.fund."
+    />
+    <link rel="stylesheet" href="ichatagent.css" />
+  </head>
+  <body>
+    <main class="ichat-shell">
+      <aside class="ichat-sidebar" aria-label="iChatAgent characters">
+        <a class="ichat-home-link" href="../">
+          <span>724</span>
+          Relationship Bank
+        </a>
+
+        <div class="ichat-sidebar-heading">
+          <p>iChatAgent Lab</p>
+          <h1>Character workspace</h1>
+        </div>
+
+        <div class="ichat-character-list" id="characterList"></div>
+
+        <div class="ichat-mode-card">
+          <strong>Local mode</strong>
+          <span>No external model call, no token spend. Static GitHub Pages fallback.</span>
+        </div>
+      </aside>
+
+      <section class="ichat-chat" aria-label="iChatAgent chat workspace">
+        <header class="ichat-chat-header">
+          <div class="ichat-avatar" id="activeAvatar">Cry</div>
+          <div>
+            <p id="activeHandle">@724-SEED</p>
+            <h2 id="activeName">Crystal</h2>
+            <span id="activeDescription"></span>
+          </div>
+          <button id="resetChat" type="button">New chat</button>
+        </header>
+
+        <div class="ichat-tag-row" id="tagRow"></div>
+        <div class="ichat-messages" id="messages" aria-live="polite"></div>
+
+        <form class="ichat-composer" id="composer">
+          <textarea
+            aria-label="Message active character"
+            id="messageDraft"
+            placeholder="Message Crystal..."
+            rows="2"
+          ></textarea>
+          <button disabled id="sendButton" type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="ichatagent.js"></script>
+  </body>
+</html>
