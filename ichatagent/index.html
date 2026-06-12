@@ -11,7 +11,7 @@
     <title>iChatAgent Lab - 724.fund</title>
     <meta
       name="description"
-      content="A local, no-token iChatAgent-style character studio for 724.fund."
+      content="A local, no-token emotional companion room for 724.fund."
     />
     <link rel="stylesheet" href="ichatagent.css" />
   </head>
@@ -28,13 +28,13 @@
           <span class="brand-mark">724</span>
           <span>
             <strong>iChatAgent Lab</strong>
-            <small>private character studio</small>
+            <small>private emotional companion</small>
           </span>
         </a>
 
         <section class="rail-intro" aria-labelledby="studioTitle">
-          <h1 id="studioTitle">Character studio</h1>
-          <p>为 founder 工作流定制的角色空间：陪伴、线索判断、谈判、系统诊断。</p>
+          <h1 id="studioTitle">今晚慢慢说</h1>
+          <p>一个安静的情感陪伴房间。先不用解释完整，先把今天没说出口的那句话放下来。</p>
         </section>
 
         <div class="persona-list" id="characterList"></div>
@@ -44,7 +44,7 @@
             <span class="pulse-dot"></span>
             <strong>Local mode</strong>
           </div>
-          <p>No external model call. No token spend. Every reply is generated in this page.</p>
+          <p>No external model call. No token spend. This room stays on the page.</p>
         </section>
       </aside>
 
@@ -55,7 +55,7 @@
             <span>Local mode</span>
             <strong>No external model call</strong>
           </div>
-          <button class="ghost-button" id="resetChat" type="button">New chat</button>
+          <button class="ghost-button" id="resetChat" type="button">重新开始</button>
         </header>
 
         <section class="character-hero">
@@ -78,14 +78,14 @@
         <div class="message-feed" id="messages" aria-live="polite"></div>
 
         <form class="composer" id="composer">
-          <label class="composer-label" for="messageDraft">Message the active character</label>
+          <label class="composer-label" for="messageDraft">今晚想被怎样回应？</label>
           <textarea
             aria-label="Message active character"
             id="messageDraft"
             placeholder="Message Crystal..."
             rows="2"
           ></textarea>
-          <button disabled id="sendButton" type="submit">Send</button>
+          <button disabled id="sendButton" type="submit">说给她听</button>
         </form>
       </section>
 
@@ -93,7 +93,7 @@
         <section class="memory-card identity-card">
           <p>Active character</p>
           <strong id="memoryName">Crystal</strong>
-          <span id="memoryRole">Emotional companion</span>
+          <span id="memoryRole">Private emotional companion</span>
         </section>
 
         <section class="memory-card">
@@ -112,14 +112,14 @@
           <ul id="boundaryList"></ul>
         </section>
 
-        <section class="ambient-signal" aria-label="Ambient signal">
+        <section class="ambient-signal" aria-label="Mood signal">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-          <strong>Ambient signal</strong>
+          <strong>Mood signal</strong>
         </section>
       </aside>
     </main>
