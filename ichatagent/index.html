@@ -11,46 +11,74 @@
     <title>iChatAgent Lab - 724.fund</title>
     <meta
       name="description"
-      content="A local, no-token iChatAgent-style character workspace for 724.fund."
+      content="A local, no-token iChatAgent-style character studio for 724.fund."
     />
     <link rel="stylesheet" href="ichatagent.css" />
   </head>
   <body>
-    <main class="ichat-shell">
-      <aside class="ichat-sidebar" aria-label="iChatAgent characters">
-        <a class="ichat-home-link" href="../">
-          <span>724</span>
-          Relationship Bank
+    <div class="ambient-field" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <main class="studio-shell">
+      <aside class="persona-rail" aria-label="iChatAgent characters">
+        <a class="brand-link" href="../">
+          <span class="brand-mark">724</span>
+          <span>
+            <strong>iChatAgent Lab</strong>
+            <small>private character studio</small>
+          </span>
         </a>
 
-        <div class="ichat-sidebar-heading">
-          <p>iChatAgent Lab</p>
-          <h1>Character workspace</h1>
-        </div>
+        <section class="rail-intro" aria-labelledby="studioTitle">
+          <h1 id="studioTitle">Character studio</h1>
+          <p>为 founder 工作流定制的角色空间：陪伴、线索判断、谈判、系统诊断。</p>
+        </section>
 
-        <div class="ichat-character-list" id="characterList"></div>
+        <div class="persona-list" id="characterList"></div>
 
-        <div class="ichat-mode-card">
-          <strong>Local mode</strong>
-          <span>No external model call, no token spend. Static GitHub Pages fallback.</span>
-        </div>
+        <section class="local-proof" aria-label="Local mode">
+          <div>
+            <span class="pulse-dot"></span>
+            <strong>Local mode</strong>
+          </div>
+          <p>No external model call. No token spend. Every reply is generated in this page.</p>
+        </section>
       </aside>
 
-      <section class="ichat-chat" aria-label="iChatAgent chat workspace">
-        <header class="ichat-chat-header">
-          <div class="ichat-avatar" id="activeAvatar">Cry</div>
-          <div>
+      <section class="chat-stage" aria-label="iChatAgent chat workspace">
+        <header class="stage-toolbar">
+          <div class="toolbar-status">
+            <span class="pulse-dot"></span>
+            <span>Local mode</span>
+            <strong>No external model call</strong>
+          </div>
+          <button class="ghost-button" id="resetChat" type="button">New chat</button>
+        </header>
+
+        <section class="character-hero">
+          <div class="portrait-wrap" aria-hidden="true">
+            <div class="portrait portrait-crystal" id="activePortrait">
+              <span id="activeAvatar">Cry</span>
+            </div>
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+          </div>
+
+          <div class="hero-copy">
             <p id="activeHandle">@724-SEED</p>
             <h2 id="activeName">Crystal</h2>
             <span id="activeDescription"></span>
+            <div class="tag-row" id="tagRow"></div>
           </div>
-          <button id="resetChat" type="button">New chat</button>
-        </header>
+        </section>
 
-        <div class="ichat-tag-row" id="tagRow"></div>
-        <div class="ichat-messages" id="messages" aria-live="polite"></div>
+        <div class="message-feed" id="messages" aria-live="polite"></div>
 
-        <form class="ichat-composer" id="composer">
+        <form class="composer" id="composer">
+          <label class="composer-label" for="messageDraft">Message the active character</label>
           <textarea
             aria-label="Message active character"
             id="messageDraft"
@@ -60,6 +88,40 @@
           <button disabled id="sendButton" type="submit">Send</button>
         </form>
       </section>
+
+      <aside class="memory-panel" aria-label="Character context">
+        <section class="memory-card identity-card">
+          <p>Active character</p>
+          <strong id="memoryName">Crystal</strong>
+          <span id="memoryRole">Emotional companion</span>
+        </section>
+
+        <section class="memory-card">
+          <div class="card-heading">
+            <span>Memory trace</span>
+            <small id="messageCount">1 msg</small>
+          </div>
+          <p id="memoryTrace">Seed conversation only. No persistent storage.</p>
+        </section>
+
+        <section class="memory-card">
+          <div class="card-heading">
+            <span>Boundaries</span>
+            <small>human-gated</small>
+          </div>
+          <ul id="boundaryList"></ul>
+        </section>
+
+        <section class="ambient-signal" aria-label="Ambient signal">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <strong>Ambient signal</strong>
+        </section>
+      </aside>
     </main>
 
     <script src="ichatagent.js"></script>
