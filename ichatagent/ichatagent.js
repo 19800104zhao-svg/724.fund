@@ -53,7 +53,50 @@ const characters = [
   }
 ];
 
+const companionModes = [
+  {
+    id: "comfort",
+    label: "安慰我",
+    title: "被温柔安慰",
+    cue: "先接住我",
+    copy: "她会先接住你的情绪，不急着讲道理。",
+    trace: "先被接住，不急着解决。",
+    reply: [
+      "我听见了：{message}",
+      "你不用把自己解释得那么完整。今晚先允许自己软一点，也允许那句没说出口的话先停在这里。",
+      "如果我坐在你旁边，我会先把声音放轻：你已经撑得够久了，现在可以先被安慰。"
+    ]
+  },
+  {
+    id: "longing",
+    label: "认真想念",
+    title: "被认真想念",
+    cue: "把暧昧说轻一点",
+    copy: "她会把靠近、犹豫和想念说得更柔软，但不越界。",
+    trace: "允许靠近，但不诱导依赖。",
+    reply: [
+      "我听见了：{message}",
+      "那种想被惦记一下的感觉，不丢人。它只是说明你今晚很想确认：有人把你放在心上。",
+      "我会靠近一点，但不替你越界。我们可以慢慢说，你最想被谁认真想起？"
+    ]
+  },
+  {
+    id: "clarity",
+    label: "陪我清醒",
+    title: "被温柔叫醒",
+    cue: "别让我沉下去",
+    copy: "她会保持温柔，但帮你把情绪收束成一个小动作。",
+    trace: "温柔陪着你，也帮你保持边界。",
+    reply: [
+      "我听见了：{message}",
+      "我会陪你，但也不让你一个人往下沉。先把这份感觉放在桌上，不急着证明它，也不急着否定它。",
+      "今晚只做一个小动作：把你最想说、但最怕显得太明显的那一句，写成一句不会伤到自己的话。"
+    ]
+  }
+];
+
 let activeId = characters[0].id;
+let activeModeId = companionModes[0].id;
 let conversations = Object.fromEntries(characters.map((character) => [character.id, [openingMessage(character)]]));
 
 const characterList = document.querySelector("#characterList");
@@ -63,6 +106,10 @@ const activeHandle = document.querySelector("#activeHandle");
 const activeName = document.querySelector("#activeName");
 const activeDescription = document.querySelector("#activeDescription");
 const tagRow = document.querySelector("#tagRow");
+const responseDial = document.querySelector("#responseDial");
+const modeTitle = document.querySelector("#modeTitle");
+const modeCopy = document.querySelector("#modeCopy");
+const modeList = document.querySelector("#modeList");
 const messagesNode = document.querySelector("#messages");
 const composer = document.querySelector("#composer");
 const draft = document.querySelector("#messageDraft");
@@ -72,6 +119,9 @@ const memoryName = document.querySelector("#memoryName");
 const memoryRole = document.querySelector("#memoryRole");
 const memoryTrace = document.querySelector("#memoryTrace");
 const messageCount = document.querySelector("#messageCount");
+const modeCard = document.querySelector("#modeCard");
+const modeState = document.querySelector("#modeState");
+const modeTrace = document.querySelector("#modeTrace");
 const boundaryList = document.querySelector("#boundaryList");
 
 function openingMessage(character) {
@@ -84,6 +134,10 @@ function openingMessage(character) {
 
 function activeCharacter() {
   return characters.find((character) => character.id === activeId) || characters[0];
+}
+
+function activeMode() {
+  return companionModes.find((mode) => mode.id === activeModeId) || companionModes[0];
 }
 
 function initials(name) {
@@ -126,12 +180,8 @@ function buildReply(character, message, history) {
     ].join("\n");
   }
 
-  return [
-    continuity,
-    `我听见了：${clean}`,
-    "先别急着把自己解释清楚。你可以把那一点想靠近、又怕太明显的感觉先放在这里。",
-    "如果我坐在你旁边，我会先问一句：你今晚是想被安慰，还是想被认真地想念一下？"
-  ].filter(Boolean).join("\n");
+  const modeLines = activeMode().reply.map((line) => line.replace("{message}", clean));
+  return [continuity, ...modeLines].filter(Boolean).join("\n");
 }
 
 function appendText(parent, tagName, text, className) {
@@ -179,6 +229,36 @@ function renderHeader(character) {
   appendText(tagRow, "span", character.tone, "tone-chip");
 }
 
+function renderMode(character) {
+  const isCompanion = character.id === "crystal";
+  responseDial.hidden = !isCompanion;
+  modeCard.hidden = !isCompanion;
+  if (!isCompanion) return;
+
+  const mode = activeMode();
+  modeTitle.textContent = mode.title;
+  modeCopy.textContent = mode.copy;
+  modeState.textContent = mode.id;
+  modeTrace.textContent = mode.trace;
+
+  modeList.replaceChildren();
+  companionModes.forEach((item) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "mode-option";
+    button.setAttribute("role", "option");
+    button.setAttribute("aria-selected", String(item.id === activeModeId));
+    if (item.id === activeModeId) button.classList.add("active");
+    button.addEventListener("click", () => {
+      activeModeId = item.id;
+      renderMode(activeCharacter());
+    });
+    appendText(button, "strong", item.label);
+    appendText(button, "span", item.cue);
+    modeList.appendChild(button);
+  });
+}
+
 function renderMessages(character) {
   messagesNode.replaceChildren();
   conversations[character.id].forEach((message) => {
@@ -188,10 +268,19 @@ function renderMessages(character) {
     appendText(article, "p", message.content);
     messagesNode.appendChild(article);
   });
-  messagesNode.scrollTop = messagesNode.scrollHeight;
-  requestAnimationFrame(() => {
-    messagesNode.scrollTop = messagesNode.scrollHeight;
-  });
+  scrollLatestMessageIntoView();
+}
+
+function scrollLatestMessageIntoView() {
+  const latestMessage = messagesNode.lastElementChild;
+  if (!latestMessage) return;
+
+  const alignToLatest = () => {
+    messagesNode.scrollTop = Math.max(0, latestMessage.offsetTop - messagesNode.offsetTop - 4);
+  };
+
+  alignToLatest();
+  requestAnimationFrame(alignToLatest);
 }
 
 function renderMemory(character) {
@@ -214,6 +303,7 @@ function render() {
   const character = activeCharacter();
   renderCharacters();
   renderHeader(character);
+  renderMode(character);
   renderMessages(character);
   renderMemory(character);
 }

@@ -351,7 +351,7 @@ button {
 
 .chat-stage {
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
   min-width: 0;
   max-height: calc(100vh - 36px);
   overflow: hidden;
@@ -500,6 +500,91 @@ button {
 
 .tag-row .tone-chip {
   color: var(--rose);
+}
+
+.response-dial {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(280px, 1fr);
+  gap: 14px;
+  align-items: stretch;
+  margin: 0 42px 18px;
+  border: 1px solid rgba(255, 180, 170, 0.14);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 180, 170, 0.12), transparent 48%),
+    rgba(255, 255, 255, 0.035);
+  padding: 14px;
+}
+
+.response-dial[hidden],
+.mode-card[hidden] {
+  display: none;
+}
+
+.mode-copy {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 4px 6px;
+}
+
+.mode-copy span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.mode-copy strong {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.mode-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.mode-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mode-option {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--ink);
+  padding: 12px;
+  text-align: left;
+}
+
+.mode-option.active,
+.mode-option:hover {
+  border-color: rgba(255, 180, 170, 0.4);
+  background:
+    linear-gradient(145deg, rgba(255, 180, 170, 0.16), rgba(255, 209, 141, 0.07));
+}
+
+.mode-option strong {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.mode-option span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .message-feed {
@@ -765,7 +850,7 @@ button {
   .memory-panel {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     max-height: none;
   }
 
@@ -794,6 +879,11 @@ button {
   .character-hero {
     grid-template-columns: 1fr;
     padding: 26px 24px 18px;
+  }
+
+  .response-dial {
+    grid-template-columns: 1fr;
+    margin: 0 24px 18px;
   }
 
   .portrait-wrap {
@@ -855,6 +945,10 @@ button {
   }
 
   .composer {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-list {
     grid-template-columns: 1fr;
   }
 
